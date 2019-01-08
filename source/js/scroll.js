@@ -101,6 +101,33 @@ $(function () {
     }
   }
 
+  // scroll to a head(anchor)
+  // Implementation reference: https://codepen.io/acusti/pen/bFBDr
+
+  var target_pos;
+
+  function scrollToHead (anchor) {
+    var elm = $('#content-outer')
+    target_pos = Math.max(0, $(anchor).offset().top - 20)
+    // Setup
+    elm.css('overflow-y', 'scroll')
+    elm.css('margin-top', -window.scrollY + 'px')
+    $('html, body').scrollTop(0)
+    elm.addClass('scrolling')
+    // Transition takes place here
+    elm.css('margin-top', -target_pos + 'px')
+  }
+
+  $('#content-outer').on('transitionend', function (ev) {
+    var elm = $('#content-outer')
+    if (ev.target.id === 'content-outer') {
+      elm.removeClass('scrolling')
+      elm.css('overflow-y', '')
+      elm.css('margin-top', '')
+      $('html, body').scrollTop(target_pos)
+    }
+  })
+
   // Precalculate element height for later transitions
   $(document).ready(function () {
     var ls = $('.toc-child')
