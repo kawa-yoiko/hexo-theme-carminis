@@ -110,9 +110,17 @@ $(function () {
   }
 
   // find head position & add active class
+
   // DOM Hierarchy:
   // ol.toc > (li.toc-item, ...)
   // li.toc-item > (a.toc-link, ol.toc-child > (li.toc-item, ...))
+
+  // In this implementation we manipulate **the list of subsections** only,
+  // i.e. the outermost .toc-child containers that exist
+
+  var activeLink = null
+  var activeChildElm = null // Outermost only
+
   function findHeadPosition (top) {
     // assume that we are not in the post page if no TOC link be found,
     // thus no need to update the status
@@ -120,10 +128,6 @@ $(function () {
       return false
     }
 
-    /*if (top < 200) {
-      $('.toc-link').removeClass('active')
-      $('.toc-child').hide()
-    }*/
     var list = $('#post-content').find('h1,h2,h3,h4,h5,h6')
     var currentId = ''
     list.each(function () {
@@ -133,31 +137,31 @@ $(function () {
       }
     })
 
-    if (currentId === '') {
-      $('.toc-link').removeClass('active')
-      $('.toc-child').hide()
+    if (currentId === '' && activeLink != null) {
+      activeLink.removeClass('active')
+      activeChildElm.hide()
+      activeLink = null
+      activeChildElm = null
     }
 
-    var currentActive = $('.toc-link.active')
-    if (currentId && currentActive.attr('href') !== currentId) {
+    if (currentId && (!activeLink || activeLink.attr('href') !== currentId)) {
       updateAnchor(currentId)
 
-      $('.toc-link').removeClass('active')
+      if (activeLink != null) {
+        activeLink.removeClass('active')
+        activeChildElm.hide()
+      }
+
       var _this = $('.toc-link[href="' + currentId + '"]')
       _this.addClass('active')
+      activeLink = _this
 
       var parents = _this.parents('.toc-child')
       // Returned list is in reverse order of the DOM elements
       // Thus `parents.last()` is the outermost .toc-child container
-      // i.e. list of subsections
       var topLink = (parents.length > 0) ? parents.last() : _this
-      topLink.closest('.toc-item').find('.toc-child').show()
-      topLink
-        // Find all top-level .toc-item containers, i.e. sections
-        // excluding the currently active one
-        .closest('.toc-item').siblings('.toc-item')
-        // Hide their respective list of subsections
-        .find('.toc-child').hide()
+      activeChildElm = topLink.closest('.toc-item').find('.toc-child')
+      activeChildElm.show()
     }
   }
 })
