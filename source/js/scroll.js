@@ -25,6 +25,7 @@ $(function () {
     }
     // Switch between table of contents and site map
     if (currentTop > $('#content-outer').height() - window.innerHeight) {
+      updateAnchor('.') // ('_')
       $('.sidebar-toc').addClass('out')
       $('.author-info').addClass('in')
     } else {
@@ -153,6 +154,8 @@ $(function () {
       }
     })
 
+    updateAnchor(currentId === '' ? '.' : currentId)
+
     if (currentId === '' && activeLink != null) {
       activeLink.removeClass('active')
       activeChildElm.addClass('hidden')
@@ -161,8 +164,6 @@ $(function () {
     }
 
     if (currentId && (!activeLink || activeLink.attr('href') !== currentId)) {
-      updateAnchor(currentId)
-
       if (activeLink != null) {
         activeLink.removeClass('active')
         activeChildElm.addClass('hidden')
