@@ -8,7 +8,7 @@ $(function () {
       // percentage inspired by hexo-theme-next
       scrollPercent(currentTop)
       // head position
-      findHeadPosition(currentTop)
+      findHeadPosition(currentTop + window.innerHeight / 3)
     }
     var isUp = scrollDirection(currentTop)
     if (currentTop > 56) {
@@ -70,12 +70,13 @@ $(function () {
   }
 
   function scrollPercent (currentTop) {
-    var docHeight = $('#content-outer').height()
+    var refElm = $('#content-inner')
+    var docHeight = refElm.height()
     var winHeight = $(window).height()
     var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
-    var scrollPercent = (currentTop) / (contentMath)
+    var scrollPercent = (currentTop - refElm.offset().top) / (contentMath)
     var scrollPercentRounded = Math.round(scrollPercent * 100)
-    var percentage = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded
+    var percentage = Math.min(100, Math.max(0, scrollPercentRounded))
     $('.progress-num').text(percentage)
     $('.sidebar-toc__progress-bar').velocity('stop')
       .velocity({
