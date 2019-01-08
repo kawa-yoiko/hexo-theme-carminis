@@ -67,7 +67,7 @@ $(function () {
   // head scroll
   $('.toc-link').on('click', function (e) {
     e.preventDefault()
-    scrollToHead($(this).attr('href'))
+    scrollToHead($(this).attr('href') + '-h')
   })
 
   // find the scroll direction
@@ -101,14 +101,35 @@ $(function () {
     }
   }
 
+  // scroll to a head(anchor)
+  function scrollToHead (anchor) {
+    $(anchor).velocity('stop').velocity('scroll', {
+      duration: 500,
+      easing: 'easeInOutQuad',
+      offset: -window.innerHeight / 3
+    })
+  }
+
   // Precalculate element height for later transitions
   $(document).ready(function () {
     var ls = $('.toc-child')
-    ls.each(function (id) {
-      var el = ls.eq(id)
+    ls.each(function (idx) {
+      var el = ls.eq(idx)
       el.css('max-height', el.height() + 'px')
     })
     ls.addClass('hidden')
+
+    ls = $('#post-content').find('h1,h2,h3,h4,h5,h6')
+    ls.each(function (idx) {
+      var el = ls.eq(idx)
+      var id = el.attr('id')
+      var anchor = $('<span>')
+      anchor.attr('id', id)
+      anchor.css('position', 'relative')
+      anchor.css('top', -window.innerHeight / 3 + 'px')
+      el.attr('id', id + '-h')
+      el.prepend(anchor)
+    })
   })
 
   // find head position & add active class
@@ -135,7 +156,7 @@ $(function () {
     list.each(function () {
       var head = $(this)
       if (top > head.offset().top - 25) {
-        currentId = '#' + $(this).attr('id')
+        currentId = '#' + $(this).attr('id').slice(0, -2) // remove '-h' suffix
       }
     })
 
