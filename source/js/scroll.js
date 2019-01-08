@@ -2,8 +2,8 @@ $(function () {
   var initTop = 0
 
   // main of scroll
-  $(window).scroll(throttle(function (event) {
-    var currentTop = $(this).scrollTop()
+  function scrollHandler (_) {
+    var currentTop = $(window).scrollTop()
     if (!isMobile()) {
       // percentage inspired by hexo-theme-next
       scrollPercent(currentTop)
@@ -49,7 +49,9 @@ $(function () {
       $('.sidebar-toc').removeClass('out')
       $('.author-info').removeClass('in')
     }
-  }, 50, 100))
+  }
+
+  $(window).scroll(throttle(scrollHandler, 50, 100))
 
   // go up smooth scroll
   $('#go-up').on('click', function () {
@@ -110,6 +112,10 @@ $(function () {
     })
   }
 
+  function scrollToHeadInstant (anchor) {
+    $(window).scrollTop($(anchor).offset().top - window.innerHeight / 3)
+  }
+
   // Precalculate element height for later transitions
   $(document).ready(function () {
     var ls = $('.toc-child')
@@ -130,6 +136,11 @@ $(function () {
       el.attr('id', id + '-h')
       el.prepend(anchor)
     })
+
+    if (window.location.hash.length > 1) {
+      scrollToHeadInstant(window.location.hash + '-h')
+    }
+    scrollHandler()
   })
 
   // find head position & add active class
