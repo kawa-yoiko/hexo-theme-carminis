@@ -183,6 +183,12 @@ body.sidebar-shown
         border-right-color: darken($cyan, 20%)
         background: $cyan
         color: $white
+      
+    .toc-child
+      transition: max-height 0.2s ease
+      overflow: hidden
+      &.hidden
+        max-height: 0 !important
 
     &__progress
       position: relative

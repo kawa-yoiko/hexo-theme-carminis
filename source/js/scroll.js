@@ -1,6 +1,5 @@
 $(function () {
   var initTop = 0
-  $('.toc-child').hide()
 
   // main of scroll
   $(window).scroll(throttle(function (event) {
@@ -70,22 +69,6 @@ $(function () {
     return result
   }
 
-  // scroll to a head(anchor)
-  function scrollToHead (anchor) {
-    $(anchor).velocity('stop').velocity('scroll', {
-      duration: 500,
-      easing: 'easeInOutQuart'
-    })
-  }
-
-  // expand toc-item
-  function expandToc ($item) {
-    $item.velocity('stop').velocity('transition.fadeIn', {
-      duration: 500,
-      easing: 'easeInQuart'
-    })
-  }
-
   function scrollPercent (currentTop) {
     var docHeight = $('#content-outer').height()
     var winHeight = $(window).height()
@@ -108,6 +91,16 @@ $(function () {
       window.history.replaceState(undefined, undefined, anchor)
     }
   }
+
+  // Precalculate element height for later transitions
+  $(document).ready(function () {
+    var ls = $('.toc-child')
+    ls.each(function (id) {
+      var el = ls.eq(id)
+      el.css('max-height', el.height() + 'px')
+    })
+    ls.addClass('hidden')
+  })
 
   // find head position & add active class
 
@@ -139,7 +132,7 @@ $(function () {
 
     if (currentId === '' && activeLink != null) {
       activeLink.removeClass('active')
-      activeChildElm.hide()
+      activeChildElm.addClass('hidden')
       activeLink = null
       activeChildElm = null
     }
@@ -149,7 +142,7 @@ $(function () {
 
       if (activeLink != null) {
         activeLink.removeClass('active')
-        activeChildElm.hide()
+        activeChildElm.addClass('hidden')
       }
 
       var _this = $('.toc-link[href="' + currentId + '"]')
@@ -161,7 +154,7 @@ $(function () {
       // Thus `parents.last()` is the outermost .toc-child container
       var topLink = (parents.length > 0) ? parents.last() : _this
       activeChildElm = topLink.closest('.toc-item').find('.toc-child')
-      activeChildElm.show()
+      activeChildElm.removeClass('hidden')
     }
   }
 })
