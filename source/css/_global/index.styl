@@ -59,6 +59,12 @@ h6
   font-size: $sidebar-icon-size
   opacity: 0
   cursor: pointer
+  transform: translateX(0) rotateZ(180deg)
+  transition: transform 0.2s ease, opacity 0.2s ease
+
+  &.shown
+    opacity: 1
+    transform: translateX(-30px) rotateZ(360deg)
 
 .fancybox-caption
   text-align: center

@@ -18,28 +18,12 @@ $(function () {
         $('#page-header').hasClass('visible') ? console.log() : $('#page-header').addClass('visible')
       }
       $('#page-header').addClass('fixed')
-      if ($('#go-up').css('opacity') === '0') {
-        $('#go-up').velocity('stop').velocity({
-          translateX: -30,
-          rotateZ: 360,
-          opacity: 1
-        }, {
-          easing: 'easeOutQuart',
-          duration: 200
-        })
-      }
+      $('#go-up').addClass('shown')
     } else {
       if (currentTop === 0) {
         $('#page-header').removeClass('fixed').removeClass('visible')
       }
-      $('#go-up').velocity('stop').velocity({
-        translateX: 0,
-        rotateZ: 180,
-        opacity: 0
-      }, {
-        easing: 'linear',
-        duration: 200
-      })
+      $('#go-up').removeClass('shown')
     }
     // Switch between table of contents and site map
     if (currentTop > $('#content-outer').height() - window.innerHeight) {
