@@ -1,6 +1,34 @@
 $(function () {
   var initTop = 0
 
+  sidebarDispTOC = function () {
+    if ($('.sidebar-toc').is(':visible')) {
+      return;
+    }
+    $('.author-info').velocity('stop')
+      .velocity('transition.slideLeftOut', {
+        duration: 300,
+        complete: function () {
+          $('.sidebar-toc').velocity('stop')
+            .velocity('transition.slideRightIn', { duration: 500 })
+        }
+      })
+  }
+
+  sidebarDispSitemap = function () {
+    if ($('.author-info').is(':visible')) {
+      return;
+    }
+    $('.sidebar-toc').velocity('stop')
+      .velocity('transition.slideRightOut', {
+        duration: 300,
+        complete: function () {
+          $('.author-info').velocity('stop')
+            .velocity('transition.slideLeftIn', { duration: 500 })
+        }
+      })
+  }
+
   // main of scroll
   $(window).scroll(throttle(function (event) {
     var currentTop = $(this).scrollTop()
@@ -41,6 +69,12 @@ $(function () {
         duration: 200
       })
     }
+    // Switch between table of contents and site map
+    if (currentTop > $('#content-outer').height() - window.innerHeight) {
+      sidebarDispSitemap();
+    } else {
+      sidebarDispTOC();
+    }
   }, 50, 100))
 
   // go up smooth scroll
@@ -70,7 +104,7 @@ $(function () {
   }
 
   function scrollPercent (currentTop) {
-    var refElm = $('#content-inner')
+    var refElm = $('#post')
     var docHeight = refElm.height()
     var winHeight = $(window).height()
     var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
