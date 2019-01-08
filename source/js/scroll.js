@@ -12,10 +12,8 @@ $(function () {
     }
     var isUp = scrollDirection(currentTop)
     if (currentTop > 56) {
-      if (isUp) {
-        $('#page-header').hasClass('visible') ? $('#page-header').removeClass('visible') : console.log()
-      } else {
-        $('#page-header').hasClass('visible') ? console.log() : $('#page-header').addClass('visible')
+      if (isUp == $('#page-header').hasClass('visible')) {
+        $('#page-header').toggleClass('visible')
       }
       $('#page-header').addClass('fixed')
       $('#go-up').addClass('shown')
