@@ -1,29 +1,31 @@
 $(function () {
   var initTop = 0
 
-  sidebarDispTOC = function () {
-    if ($('.sidebar-toc').is(':visible')) {
-      return;
+  var sidebarDispTOC = function () {
+    var toc = $('.sidebar-toc'), sm = $('.author-info')
+    if (toc.is(':visible') || toc.is('.velocity-animating') || sm.is('.velocity-animating')) {
+      return
     }
-    $('.author-info').velocity('stop')
+    sm.velocity('stop')
       .velocity('transition.slideLeftOut', {
         duration: 300,
         complete: function () {
-          $('.sidebar-toc').velocity('stop')
+          toc.velocity('stop')
             .velocity('transition.slideRightIn', { duration: 500 })
         }
       })
   }
 
-  sidebarDispSitemap = function () {
-    if ($('.author-info').is(':visible')) {
-      return;
+  var sidebarDispSitemap = function () {
+    var toc = $('.sidebar-toc'), sm = $('.author-info')
+    if (sm.is(':visible') || toc.is('.velocity-animating') || sm.is('.velocity-animating')) {
+      return
     }
-    $('.sidebar-toc').velocity('stop')
+    toc.velocity('stop')
       .velocity('transition.slideRightOut', {
         duration: 300,
         complete: function () {
-          $('.author-info').velocity('stop')
+          sm.velocity('stop')
             .velocity('transition.slideLeftIn', { duration: 500 })
         }
       })
