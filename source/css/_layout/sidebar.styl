@@ -1,3 +1,18 @@
+body
+  transition: padding-left 0.4s ease
+
+body.sidebar-shown
+  padding-left: 300px
+
+#toggle-sidebar
+  transform: rotateZ(0deg)
+  color: #1f2d3d
+  transition: all 0.2s ease
+
+  &.on
+    transform: rotateZ(-180deg)
+    color: #99a9bf
+
 #sidebar
   position: fixed
   top: 0
@@ -9,6 +24,11 @@
   height: 100%
   background: $sidebar-background
   box-shadow: -0.25rem 0 0.25rem rgba(232, 237, 250, 0.6) inset
+  transition: transform 0.4s ease
+  transform: translateX(0px)
+
+  body.sidebar-shown &
+    transform: translateX(300px)
 
   hr
     margin: 1rem 0
