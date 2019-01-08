@@ -8,7 +8,7 @@ $(function () {
       // percentage inspired by hexo-theme-next
       scrollPercent(currentTop)
       // head position
-      findHeadPosition(currentTop + window.innerHeight / 3)
+      findHeadPosition(currentTop + window.innerHeight / 4)
     }
     var isUp = scrollDirection(currentTop)
     if (currentTop > 56) {
@@ -108,12 +108,12 @@ $(function () {
     $(anchor).velocity('stop').velocity('scroll', {
       duration: 500,
       easing: 'easeInOutQuad',
-      offset: -window.innerHeight / 3
+      offset: -window.innerHeight / 4
     })
   }
 
   function scrollToHeadInstant (anchor) {
-    $(window).scrollTop($(anchor).offset().top - window.innerHeight / 3)
+    $(window).scrollTop($(anchor).offset().top - window.innerHeight / 4)
   }
 
   // Precalculate element height for later transitions
@@ -132,7 +132,7 @@ $(function () {
       var anchor = $('<span>')
       anchor.attr('id', id)
       anchor.css('position', 'relative')
-      anchor.css('top', -window.innerHeight / 3 + 'px')
+      anchor.css('top', -window.innerHeight / 4 + 'px')
       el.attr('id', id + '-h')
       el.prepend(anchor)
     })
