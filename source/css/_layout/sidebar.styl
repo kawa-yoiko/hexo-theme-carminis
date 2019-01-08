@@ -26,6 +26,7 @@ body.sidebar-shown
   box-shadow: -0.25rem 0 0.25rem rgba(232, 237, 250, 0.6) inset
   transition: transform 0.4s ease
   transform: translateX(0px)
+  overflow-x: hidden
 
   body.sidebar-shown &
     transform: translateX(300px)
@@ -34,26 +35,22 @@ body.sidebar-shown
     margin: 1rem 0
     width: calc(100% - 0.25rem)
 
-  .toggle-sidebar-info
-    padding-right: 0.5rem
-
-    span
-      display: inline-block
-      padding: 0 0.6rem
-      height: h = 1.6rem
-      background: $light-blue
-      color: $white
-      line-height: h
-      cursor: pointer
-      transition: all 0.2s ease-in-out
-
-      &:hover
-        background: $cyan
+  .sidebar-toc,
+  .author-info
+    transition: transform 0.4s ease, opacity 0.4s ease
+    position: absolute
+    left: 0
+    right: 0
 
   .author-info
-    margin-left: -0.25rem
-    padding: 0.5rem
+    padding: 0.5rem 0.75rem
     width: 100%
+    transform: translateX(-300px)
+    opacity: 0
+
+    &.in
+      transform: translateX(0px)
+      opacity: 1
 
     .follow-button
       text-align: center
@@ -156,6 +153,14 @@ body.sidebar-shown
           content: ""
 
   .sidebar-toc
+    padding-left: inherit
+    transform: translateX(0px)
+    opacity: 1
+
+    &.out
+      transform: translateX(300px)
+      opacity: 0
+
     ol,
     li
       list-style: none

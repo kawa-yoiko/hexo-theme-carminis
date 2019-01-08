@@ -1,34 +1,6 @@
 $(function () {
   var initTop = 0
 
-  sidebarDispTOC = function () {
-    if ($('.sidebar-toc').is(':visible')) {
-      return;
-    }
-    $('.author-info').velocity('stop')
-      .velocity('transition.slideLeftOut', {
-        duration: 300,
-        complete: function () {
-          $('.sidebar-toc').velocity('stop')
-            .velocity('transition.slideRightIn', { duration: 500 })
-        }
-      })
-  }
-
-  sidebarDispSitemap = function () {
-    if ($('.author-info').is(':visible')) {
-      return;
-    }
-    $('.sidebar-toc').velocity('stop')
-      .velocity('transition.slideRightOut', {
-        duration: 300,
-        complete: function () {
-          $('.author-info').velocity('stop')
-            .velocity('transition.slideLeftIn', { duration: 500 })
-        }
-      })
-  }
-
   // main of scroll
   $(window).scroll(throttle(function (event) {
     var currentTop = $(this).scrollTop()
@@ -71,9 +43,11 @@ $(function () {
     }
     // Switch between table of contents and site map
     if (currentTop > $('#content-outer').height() - window.innerHeight) {
-      sidebarDispSitemap();
+      $('.sidebar-toc').addClass('out')
+      $('.author-info').addClass('in')
     } else {
-      sidebarDispTOC();
+      $('.sidebar-toc').removeClass('out')
+      $('.author-info').removeClass('in')
     }
   }, 50, 100))
 
