@@ -171,7 +171,7 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
         transition: all 0.3s ease-out
 
   ol
-    li
+    > li
       &:before
         margin-top: 0.2rem
         width: w = 1.2rem
@@ -184,7 +184,7 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
         line-height: h
 
   ul
-    li
+    > li
       &:hover
         &:before
           background: $light-blue
