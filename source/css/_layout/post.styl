@@ -1,12 +1,9 @@
-headStyle(fontsize)
-  padding-left: unit(fontsize + 0.1, "rem")
-
+headStyle(fontsize, $content = "", $margin = 0.4rem)
   &:before
-    top: calc(50% - unit(fontsize / 2 - 0.05, "rem"))
+    if $content
+      content: $content
+      margin-right: $margin
     font-size: unit(fontsize, "rem")
-
-  &:hover
-    padding-left: unit(fontsize + 0.2, "rem")
 
 #post-title
   font-size: 1.4rem
@@ -22,7 +19,6 @@ headStyle(fontsize)
       color: $light-blue
 
 #post
-  overflow: hidden
 
   &-meta
     text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
@@ -122,42 +118,23 @@ headStyle(fontsize)
   h4,
   h5,
   h6
-    cursor: pointer
     transition: all 0.2s ease-out
 
     &:before
-      position: absolute
-      top: calc(50% - 0.35rem)
-      left: 0
+      position: relative
       color: $light-red
-      content: "\f0c1"
       font: normal normal normal 14px / 1 FontAwesome
       font-size: 0.8rem
       transition: all 0.2s ease-out
 
-    &:hover
-      padding-left: 1.1rem
-
-      &:before
-        color: $light-blue
-
   h1
-    headStyle(1)
+    headStyle(1.1, "\f1b2") // cube
 
   h2
-    headStyle(0.9)
+    headStyle(1, "\f276")   // map-pin
 
   h3
-    headStyle(0.8)
-
-  h4
-    headStyle(0.7)
-
-  h5
-    headStyle(0.6)
-
-  h6
-    headStyle(0.6)
+    headStyle(0.7, "\f054") // chevron-right
 
 #post-content
   margin-bottom: 1rem
@@ -179,7 +156,7 @@ headStyle(fontsize)
     li
       position: relative
       margin: 0.2rem 0
-      padding: 0.1rem 0.5rem 0.1rem 1.5rem
+      padding: 0.1rem 0.5rem 0.1rem 1.7rem
 
       &:hover
         &:before
@@ -191,7 +168,6 @@ headStyle(fontsize)
         left: 0
         background: $light-blue
         color: $white
-        cursor: pointer
         transition: all 0.3s ease-out
 
   ol
@@ -211,7 +187,7 @@ headStyle(fontsize)
     li
       &:hover
         &:before
-          border-color: $ruby
+          background: $light-blue
 
       &:before
         $w = 0.3rem
@@ -279,7 +255,7 @@ img
 
 .post-copyright
   position: relative
-  margin-bottom: 1rem
+  margin: 2rem 1rem 0 0
   padding: 0.5rem 0.8rem
   border: 1px solid $light-grey
   transition: box-shadow 0.3s ease-in-out
