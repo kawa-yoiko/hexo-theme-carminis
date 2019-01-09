@@ -86,7 +86,14 @@ $(function () {
     $(anchor).velocity('stop').velocity('scroll', {
       duration: 500,
       easing: 'easeInOutQuad',
-      offset: -window.innerHeight / 4
+      offset: -window.innerHeight / 4,
+      complete: function (elements) {
+        var anchor = $(elements[0])
+        anchor.addClass('anchor-highlight')
+        setTimeout((function (_anchor) { return function () {
+          _anchor.removeClass('anchor-highlight')
+        } })(anchor), 1000)
+      }
     })
   }
 
