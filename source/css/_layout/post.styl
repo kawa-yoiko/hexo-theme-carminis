@@ -40,6 +40,7 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
   background-position: center
   background-size: cover
   opacity: 0
+  z-index: 1
 
   &.no-bg
     $bg-svg += ""
@@ -139,6 +140,9 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
   h3
     headStyle(0.7, "\f054") // chevron-right
 
+#post-content
+  margin-bottom: 1rem
+
   ol,
   ul
     margin-top: 0.4rem
@@ -200,9 +204,6 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
         background: $white
         content: ""
         line-height: h
-
-#post-content
-  margin-bottom: 1rem
 
 a
   color: $a-link-color
