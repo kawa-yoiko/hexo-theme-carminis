@@ -62,17 +62,11 @@ $(function () {
     var docHeight = refElm.height()
     var winHeight = $(window).height()
     var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
-    var scrollPercent = (currentTop - refElm.offset().top) / (contentMath)
-    var scrollPercentRounded = Math.round(scrollPercent * 100)
-    var percentage = Math.min(100, Math.max(0, scrollPercentRounded))
+    var scrollPercent = Math.min(1, Math.max(0, (currentTop - refElm.offset().top) / (contentMath)))
+    var percentage = Math.round(scrollPercent * 100)
+    var percentagePrec = Math.round(scrollPercent * 10000) / 100
     $('.progress-num').text(percentage)
-    $('.sidebar-toc__progress-bar').velocity('stop')
-      .velocity({
-        width: percentage + '%'
-      }, {
-        duration: 100,
-        easing: 'easeInOutQuart'
-      })
+    $('.sidebar-toc__progress-bar').css('width', percentagePrec + '%')
   }
 
   function updateAnchor (anchor) {

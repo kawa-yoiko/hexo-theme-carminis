@@ -194,18 +194,16 @@ body.sidebar-shown
 
     &__progress
       position: relative
-      margin-top: 0.3rem
+      margin: 0.3rem 0 0.5rem 0
       padding-left: 0.6rem
       color: $cyan
 
-      .progress-notice
-        margin-right: 0.4rem
-
       .progress-num
         display: inline-block
-        min-width: 0.9rem
+        min-width: 1.5rem
 
       &-bar
         width: 0
         height: 1px
         background: $cyan
+        transition: width 0.1s ease
