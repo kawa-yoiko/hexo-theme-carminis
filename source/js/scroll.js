@@ -44,7 +44,7 @@ $(function () {
   })
 
   // head scroll
-  $('.toc-link').on('click', function (e) {
+  $('a[href^="#"]').on('click', function (e) {
     e.preventDefault()
     scrollToHead($(this).attr('href'))
   })
@@ -92,14 +92,6 @@ $(function () {
       el.css('max-height', el.height() + 'px')
     })
     ls.addClass('hidden')
-
-    ls = $('#post-content').find('a[href^="#fn"]')
-    ls.each(function (idx) {
-      var el = ls.eq(idx)
-      el.on('click', function () {
-        scrollToHead($(this).attr('href'))
-      })
-    })
 
     scrollHandler()
   })
