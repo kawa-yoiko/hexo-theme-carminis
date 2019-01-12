@@ -60,8 +60,10 @@ $(function () {
     var refElm = $('#post')
     var docHeight = refElm.height()
     var winHeight = $(window).height()
+    var offset = winHeight / 4
+    winHeight -= offset
     var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
-    var scrollPercent = Math.min(1, Math.max(0, (currentTop - refElm.offset().top) / (contentMath)))
+    var scrollPercent = Math.min(1, Math.max(0, ((currentTop + offset) - refElm.offset().top) / (contentMath)))
     var percentage = Math.round(scrollPercent * 100)
     var percentagePrec = Math.round(scrollPercent * 10000) / 100
     $('.progress-num').text(percentage)
