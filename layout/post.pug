@@ -13,7 +13,7 @@ block top_img
           if (theme.post_meta.date_type)
             - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
             time.post-meta__date
-              i.fa.fa-calendar(aria-hidden="true", style='padding-right: 0.4rem')
+              i.fa.fa-calendar.post-meta__icon(aria-hidden="true")
               =date(page[date_type], config.date_format)
           if (theme.post_meta.categories && page.categories.data.length > 0)
             if (theme.post_meta.date_type)
@@ -47,7 +47,7 @@ block content
         if (theme.post_meta.date_type)
           - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
           time.post-meta__date
-            i.fa.fa-calendar(aria-hidden="true", style='padding-right: 0.4rem')
+            i.fa.fa-calendar.post-meta__icon(aria-hidden="true")
             =date(page[date_type], config.date_format)
         if (theme.post_meta.categories && page.categories.data.length > 0)
           if (theme.post_meta.date_type)

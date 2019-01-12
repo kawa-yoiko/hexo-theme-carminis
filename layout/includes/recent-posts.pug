@@ -10,7 +10,7 @@ each article in page.posts.data
     if (theme.post_meta.date_type)
       - var date_type = theme.post_meta.date_type == 'updated' ? 'updated' : 'date'
       time.post-meta__date
-        i.fa.fa-calendar(aria-hidden="true", style='padding-right: 0.4rem')
+        i.fa.fa-calendar.post-meta__icon(aria-hidden="true")
         =date(page[date_type], config.date_format)
     if (article.layout === 'slides')
       a.article-type(href='/slides') Slides
