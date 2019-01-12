@@ -29,7 +29,7 @@ each article in page.posts.data
           i.fa.fa-tag.article-meta__icon(aria-hidden="true")
           a(href=url_for(item.path)).article-meta__tags #[=item.name]
           if (index < article.tags.data.length - 1)
-            span.article-meta__link -
+            span.article-meta__link
     if (article.layout === 'slides')
       include ./mixins/slide.pug 
       - var iframeLink = article.iframe || link
