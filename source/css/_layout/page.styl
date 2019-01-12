@@ -57,10 +57,11 @@ galleryItemStyle(w, h)
     text-decoration: none
     line-height: h
     cursor: pointer
+    border-radius: (h / 2)
     transition: all 0.2s ease-in-out
 
     &:hover
-      background: $ruby
+      background: lighten($cyan, 8%)
 
   .article-title
     display: block
@@ -105,13 +106,13 @@ galleryItemStyle(w, h)
   &-title
     position: relative
     padding-bottom: 1.2rem
-    padding-left: 1rem
+    padding-left: 1.15rem
     font-size: 1.2rem
     line-height: 1
 
     &:hover
       &:before
-        border-color: $ruby
+        background: $light-blue
 
     &:before
       position: absolute
@@ -144,7 +145,7 @@ galleryItemStyle(w, h)
 
     &:hover
       &:before
-        border-color: $ruby
+        background: $light-blue
 
     &:before
       $w = 0.3rem
@@ -165,7 +166,7 @@ galleryItemStyle(w, h)
 
       &:hover
         &:before
-          border-color: $light-blue
+          background: $ruby
 
       &:before
         top: 0.7rem
@@ -173,7 +174,6 @@ galleryItemStyle(w, h)
 
     &__time
       position: absolute
-      top: 0.1rem
       color: $a-link-color
 
     &__title

@@ -6,6 +6,9 @@
   .pagination
     text-align: center
 
+  a.extend:hover
+    color: $light-cyan
+
   i.fa.fa-chevron-left
     margin-right: 0.3rem
     cursor: pointer
@@ -20,11 +23,17 @@
   .page-number
     display: inline-block
     margin: 0 0.2rem
-    min-width: w = 1.2rem
+    min-width: w = 1.6rem
     height: w
     text-align: center
     line-height: w
     cursor: pointer
+    border-radius: (w / 2)
+    text-decoration: none
+
+    &:hover
+      color: $white
+      background: $pale-cyan
 
     &.current
       background: $cyan

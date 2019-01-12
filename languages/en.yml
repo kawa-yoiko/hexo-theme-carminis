@@ -5,7 +5,7 @@ sidebar:
   toc: Contents
 
 footer:
-  driven: Driven
+  driven: Powered by
   theme: Theme
 
 copy:
@@ -30,7 +30,7 @@ post:
     author: Author
     link: Link
     copyright_notice: Copyright Notice
-    copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
+    copyright_content: 'All articles are licensed under <i class="fa fa-creative-commons" aria-hidden="true"></i> <a href="%s">%s</a> unless stated otherwise.'
 
 
 search: Search

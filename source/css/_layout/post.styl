@@ -19,6 +19,7 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
       color: $light-blue
 
 #post
+  margin-top: 2em
 
   &-meta
     text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
@@ -69,7 +70,7 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
     cursor: pointer
 
   #post-info
-    padding: 10rem 1rem
+    padding: 6rem 1rem
     width: 100%
     color: $light-grey
     text-align: center
@@ -146,9 +147,6 @@ anchor-highlightable()
   a[href^="#"]
     anchor-highlightable()
 
-#post-content
-  margin-bottom: 1rem
-
   ol,
   ul
     margin-top: 0.4rem
@@ -190,7 +188,7 @@ anchor-highlightable()
         content: counter(li)
         counter-increment: li
         text-align: center
-        font-size: 0.6rem
+        font-size: 0.7rem
         line-height: h
 
   ul
@@ -210,6 +208,9 @@ anchor-highlightable()
         background: $white
         content: ""
         line-height: h
+
+#post-content
+  margin-bottom: 1rem
 
 .footnotes li
   anchor-highlightable()

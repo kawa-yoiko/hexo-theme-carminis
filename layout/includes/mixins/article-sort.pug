@@ -2,7 +2,7 @@ mixin articleSort(posts)
   .article-sort
     - var year
     - posts.each(function (article) {
-      - var tempYear = date(article.date, 'YYYY')
+      - var tempYear = date(article.date, 'YYYY-MM')
       if tempYear !== year
         - year = tempYear
         .article-sort-item.year= year
