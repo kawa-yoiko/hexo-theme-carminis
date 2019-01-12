@@ -229,6 +229,11 @@ disqus:
 #   placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
 #   guest_info: nick,mail,link #valine comment header inf
 
+# Isso comment system. https://posativ.org/isso/
+# isso:
+#   enable: false
+#   server: isso.example.com  # Domain only
+
 # Footer Settings
 # ---------------
 since: 2013
