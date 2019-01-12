@@ -11,6 +11,21 @@ galleryItemStyle(w, h)
         .gallery-item__title
           transform: translate3d(0, unit(h - 1.5, "rem"), 0)
 
+tag-style()
+  margin-right: 0.5rem
+  padding: 0.6em
+  border: 1px solid $light-blue
+  border-radius: 1.2em
+  background: $white
+  color: $light-blue
+  text-decoration: none
+  cursor: pointer
+  transition: all 0.2s ease-in-out
+
+  &:hover
+    background: $light-blue
+    color: $white
+    
 .recent-post-item
   margin: 1.6rem 0 2rem
 
@@ -83,16 +98,13 @@ galleryItemStyle(w, h)
   text-align: center
 
   a
-    display: inline-block
-    margin: 0 0.4rem
-    text-decoration: none
-    cursor: pointer
-
-    &:hover
-      color: $ruby !important
+    tag-style()
 
   &__title
     font-size: 1.8rem
+
+  &-tags
+    margin-top: 1rem
 
 #tag,
 #category,
