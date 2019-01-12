@@ -13,8 +13,8 @@ $(function () {
     })
   $('#top-container').velocity('stop')
     .velocity('transition.fadeIn', {
-      delay: 200,
-      duration: 500,
+      delay: 0,
+      duration: 700,
       easing: 'easeInOutQuart'
     })
 })

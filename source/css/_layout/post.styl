@@ -112,6 +112,13 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
   width: $content-width
   opacity: 0
 
+
+anchor-highlightable()
+  transition: color 0.3s ease
+
+  &.anchor-highlight
+    color: $light-red
+    
 #content-inner
   h1,
   h2,
@@ -119,17 +126,13 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
   h4,
   h5,
   h6
-    transition: color 0.3s ease-out
+    anchor-highlightable()
 
     &:before
       position: relative
       color: $light-red
       font: normal normal normal 14px / 1 FontAwesome
       font-size: 0.8rem
-      transition: all 0.2s ease-out
-
-    &.anchor-highlight
-      color: $light-red
 
   h1
     headStyle(1.1, "\f1b2") // cube
@@ -139,6 +142,9 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
 
   h3
     headStyle(0.7, "\f054") // chevron-right
+
+  a[href^="#fn"]
+    anchor-highlightable()
 
 #post-content
   margin-bottom: 1rem
@@ -204,6 +210,9 @@ headStyle(fontsize, $content = "", $margin = 0.4rem)
         background: $white
         content: ""
         line-height: h
+
+.footnotes li
+  anchor-highlightable()
 
 a
   color: $a-link-color

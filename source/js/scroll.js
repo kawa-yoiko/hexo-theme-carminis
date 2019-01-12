@@ -25,7 +25,6 @@ $(function () {
     }
     // Switch between table of contents and site map
     if (currentTop > $('#content-outer').height() - window.innerHeight) {
-      updateAnchor('.') // ('_')
       $('.sidebar-toc').addClass('out')
       $('.author-info').addClass('in')
     } else {
@@ -34,7 +33,7 @@ $(function () {
     }
   }
 
-  $(window).scroll(throttle(scrollHandler, 50, 100))
+  $(window).scroll(scrollHandler)
 
   // go up smooth scroll
   $('#go-up').on('click', function () {
@@ -47,7 +46,7 @@ $(function () {
   // head scroll
   $('.toc-link').on('click', function (e) {
     e.preventDefault()
-    scrollToHead($(this).attr('href') + '-h')
+    scrollToHead($(this).attr('href'))
   })
 
   // find the scroll direction
@@ -69,12 +68,6 @@ $(function () {
     $('.sidebar-toc__progress-bar').css('width', percentagePrec + '%')
   }
 
-  function updateAnchor (anchor) {
-    if (window.history.replaceState && anchor !== window.location.hash) {
-      window.history.replaceState(undefined, undefined, anchor)
-    }
-  }
-
   // scroll to a head(anchor)
   function scrollToHead (anchor) {
     $(anchor).velocity('stop').velocity('scroll', {
@@ -91,10 +84,6 @@ $(function () {
     })
   }
 
-  function scrollToHeadInstant (anchor) {
-    $(window).scrollTop($(anchor).offset().top - window.innerHeight / 4)
-  }
-
   // Precalculate element height for later transitions
   $(document).ready(function () {
     var ls = $('.toc-child')
@@ -104,21 +93,14 @@ $(function () {
     })
     ls.addClass('hidden')
 
-    ls = $('#post-content').find('h1,h2,h3,h4,h5,h6')
+    ls = $('#post-content').find('a[href^="#fn"]')
     ls.each(function (idx) {
       var el = ls.eq(idx)
-      var id = el.attr('id')
-      var anchor = $('<span>')
-      anchor.attr('id', id)
-      anchor.css('position', 'relative')
-      anchor.css('top', -window.innerHeight / 4 + 'px')
-      el.attr('id', id + '-h')
-      el.prepend(anchor)
+      el.on('click', function () {
+        scrollToHead($(this).attr('href'))
+      })
     })
 
-    if (window.location.hash.length > 1) {
-      scrollToHeadInstant(window.location.hash + '-h')
-    }
     scrollHandler()
   })
 
@@ -146,11 +128,9 @@ $(function () {
     list.each(function () {
       var head = $(this)
       if (top > head.offset().top - 25) {
-        currentId = '#' + $(this).attr('id').slice(0, -2) // remove '-h' suffix
+        currentId = '#' + $(this).attr('id')
       }
     })
-
-    updateAnchor(currentId === '' ? '.' : currentId)
 
     if (currentId === '' && activeLink != null) {
       activeLink.removeClass('active')
