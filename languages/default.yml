@@ -27,9 +27,9 @@ post:
   wordcount: Word count
   min2read: 'Reading time: %s min'
   copyright:
-    author: Author
-    link: Link
-    copyright_notice: Copyright Notice
+    author: 'Author: '
+    link: 'Link: '
+    copyright_notice: 'Copyright Notice: '
     copyright_content: 'All articles are licensed under <i class="fa fa-creative-commons" aria-hidden="true"></i> <a href="%s">%s</a> unless stated otherwise.'
 
 
