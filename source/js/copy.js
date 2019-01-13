@@ -33,7 +33,7 @@ $(function () {
         return false
       }
     } else {
-      $(ctx).prev('.copy-notice').text(GLOBAL_CONFIG.copy.noSupport)
+      $(ctx).prev('.copy-notice').text(GLOBAL_CONFIG.copy.error)
     }
   }
   // click events

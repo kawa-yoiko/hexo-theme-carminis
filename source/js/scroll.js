@@ -24,7 +24,11 @@ $(function () {
       $('#go-up').removeClass('shown')
     }
     // Switch between table of contents and site map
-    if (currentTop > $('#content-outer').height() - window.innerHeight) {
+    var togglePositionThreshold = Math.min(
+      $('#post').offset().top + $('#post').height() - window.innerHeight / 4,
+      $('#content-outer').height() - window.innerHeight
+    );
+    if (currentTop >= togglePositionThreshold) {
       $('.sidebar-toc').addClass('out')
       $('.author-info').addClass('in')
     } else {
