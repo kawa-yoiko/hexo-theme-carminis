@@ -1,32 +1,35 @@
-#footer.layout
-  - var now = new Date()
-  - var nowYear = now.getFullYear()
-  .copyright
-    i.fa.fa-copyright
-    if theme.since && theme.since != nowYear
-      != ` ${theme.since} - ${nowYear} by ${config.author}`
-    else
-      != ` ${nowYear} by ${config.author}`
-  .framework-info
-    span Brimming with 
-      i.fa.fa-heart(style='transform: rotate(4deg); font-size: 1.1em;')
-      i.fa.fa-star(style='transform: rotate(-20deg); font-size: 0.6em; position: relative; top: -10px;')
-    span.footer-separator |
-    span= _p('footer.driven') + ' '
-    a(href='http://hexo.io')
-      span Hexo
-    span.footer-separator |
-    span= _p('footer.theme') + ' '
-    a(href='https://github.com/kawa-yoiko/hexo-theme-carminis')
-      span #[i Carminis]
-    | , a fork of 
-    a(href='https://github.com/Molunerfinn/hexo-theme-melody')
-      span #[i Melody]
-  if theme.footer_custom_text
-    .footer_custom_text!=`${theme.footer_custom_text}`   
-  if theme.ICP.enable
-    .icp
-      a(href=theme.ICP.url)
-        span=theme.ICP.text
-  if theme.busuanzi.enable
-    include ./count/busuanzi.pug
+- var top_img = theme.top_img || config.top_img
+- var bg_img = top_img && top_img !== true ? `background-image: url(${top_img})` : ''
+footer(style=bg_img)
+  #footer.layout
+    - var now = new Date()
+    - var nowYear = now.getFullYear()
+    .copyright
+      i.fa.fa-copyright
+      if theme.since && theme.since != nowYear
+        != ` ${theme.since} - ${nowYear} by ${config.author}`
+      else
+        != ` ${nowYear} by ${config.author}`
+    .framework-info
+      span Brimming with 
+        i.fa.fa-heart(style='transform: rotate(5deg); font-size: 1.2em;')
+        i.fa.fa-star(style='transform: rotate(-20deg); font-size: 0.6em; position: relative; top: -12px;')
+      span.footer-separator |
+      span= _p('footer.driven') + ' '
+      a(href='http://hexo.io')
+        span Hexo
+      span.footer-separator |
+      span= _p('footer.theme') + ' '
+      a(href='https://github.com/kawa-yoiko/hexo-theme-carminis')
+        span #[i Carminis]
+      | , a fork of 
+      a(href='https://github.com/Molunerfinn/hexo-theme-melody')
+        span #[i Melody]
+    if theme.footer_custom_text
+      .footer_custom_text!=`${theme.footer_custom_text}`   
+    if theme.ICP.enable
+      .icp
+        a(href=theme.ICP.url)
+          span=theme.ICP.text
+    if theme.busuanzi.enable
+      include ./count/busuanzi.pug

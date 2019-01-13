@@ -47,8 +47,7 @@ html(lang=config.language)
           div!= body
         else
           block content
-    footer
-      include ./footer.pug
+    include ./footer.pug
     i.fa.fa-arrow-up#go-up(aria-hidden="true")
     each item in theme.cdn.js
       if item !== undefined
